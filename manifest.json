@@ -1,0 +1,45 @@
+{
+
+    "manifest_version": 2,
+    "name": "大夏学堂助手火狐版",
+    "version": "1.0",
+  
+    "description": "批量下载大夏学堂文件到本地",
+    "homepage_url": "https://github.com/iamSmallY/ecnu_blackboard_helper_firefox",
+
+    "background": {
+      "scripts": ["background.js"]
+    },
+  
+    "browser_action": {
+      "default_icon": {
+        "16": "icons/ecnu16.png",
+        "48": "icons/ecnu48.png",
+        "128": "icons/ecnu128.png"
+      },
+      "default_title": "进入大夏学堂"
+    },
+
+    "icons": {
+      "16": "icons/ecnu16.png",
+      "48": "icons/ecnu48.png",
+      "128": "icons/ecnu128.png"
+    },
+
+    "permissions": [
+      "*://elearning.ecnu.edu.cn/*",
+      "tab",
+      "downloads"
+    ],
+
+    "content_scripts": [
+      {
+          "matches": [
+              "*://elearning.ecnu.edu.cn/webapps/blackboard/content/listContent.jsp*"
+          ],
+          "js": [
+              "script.js"
+          ]
+      }
+      ]
+  }
