@@ -2,7 +2,7 @@
 
     "manifest_version": 2,
     "name": "大夏学堂助手火狐版",
-    "version": "1.2",
+    "version": "1.3",
   
     "description": "批量下载大夏学堂文件到本地",
     "homepage_url": "https://github.com/iamSmallY/ecnu_blackboard_helper_firefox",
@@ -40,5 +40,12 @@
               "script.js"
           ]
       }
-      ]
+      ],
+
+      "applications": {
+        "gecko": {
+          "id": "{bcdeae57-ac00-42c8-a020-1a27732f7fbc}",
+          "strict_min_version": "42.0"
+        }
+      }
   }

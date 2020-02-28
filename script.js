@@ -61,11 +61,13 @@ if (selectors.length == undefined) {//一个选项时
 dlbutton.addEventListener('click', function () {
     var dllist = [];
     for (const item of contents) {
-        if (item.getElementsByClassName("selector")[0].checked == true) {
-            var atags = item.getElementsByTagName('a');
-            for (const atag of atags) {
-                if (!atag.classList.contains("cmimg-hide")) {
-                    dllist.push([atag.href, atag.innerText]);
+        if (item.getElementsByClassName("selector").length != 0) {
+            if (item.getElementsByClassName("selector")[0].checked == true) {
+                var atags = item.getElementsByTagName('a');
+                for (const atag of atags) {
+                    if (atag.href.indexOf("course_id") == -1&&!atag.classList.contains("cmimg-hide")) {
+                        dllist.push([atag.href, atag.innerText]);
+                    }
                 }
             }
         }
