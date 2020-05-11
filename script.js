@@ -28,8 +28,9 @@ toolbar.appendChild(dlbutton);
 document.getElementById("pageTitleDiv").appendChild(toolbar);
 
 
-var selectors = document.getElementsByName('selector');
+var selectors = document.getElementsByClassName('selector');
 selectall.addEventListener('click', function () {
+
     if (selectors.length == undefined) {//一个选项时
         selectors.checked = selectall.checked;
     } else {
@@ -37,7 +38,7 @@ selectall.addEventListener('click', function () {
             selectors[i].checked = this.checked;
         }
     }
-});
+}, false);
 
 if (selectors.length == undefined) {//一个选项时
     selectors.addEventListener('click', function () {
@@ -65,13 +66,24 @@ dlbutton.addEventListener('click', function () {
             if (item.getElementsByClassName("selector")[0].checked == true) {
                 var atags = item.getElementsByTagName('a');
                 for (const atag of atags) {
-                    if (atag.href.indexOf("course_id") == -1&&!atag.classList.contains("cmimg-hide")) {
+                    if (!atag.classList.contains("cmimg-hide") && atag.href.indexOf("/webapps/") == -1) {
                         dllist.push([atag.href, atag.innerText]);
                     }
                 }
+
+                var iframes = item.getElementsByTagName("iframe");
+                for (const iframe of iframes) {
+                    var standalonevideos = iframe.contentDocument.getElementsByTagName('video');
+                    for (const video of standalonevideos) {
+                        dllist.push([video.src, item.getElementsByClassName("item clearfix")[0].innerText]);
+                    }
+                }
+
             }
         }
+
     }
     console.log(dllist)
-    browser.runtime.sendMessage(dllist);
+    chrome.runtime.sendMessage(dllist);
+
 }, false);
