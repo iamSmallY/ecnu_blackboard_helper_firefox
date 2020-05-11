@@ -84,6 +84,6 @@ dlbutton.addEventListener('click', function () {
 
     }
     console.log(dllist)
-    chrome.runtime.sendMessage(dllist);
+    browser.runtime.sendMessage(dllist);
 
 }, false);
